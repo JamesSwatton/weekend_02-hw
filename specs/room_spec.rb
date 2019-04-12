@@ -12,10 +12,10 @@ class TestRoom < Minitest::Test
     @song1 = Song.new("Rain", "The Beatles")
     @song2 = Song.new("Song 2", "Blur")
 
-    @john = Guest.new("John", 10.0)
-    @paul = Guest.new("Paul", 8.0)
-    @george = Guest.new("George", 5.0)
-    @ringo = Guest.new("Ringo", 2.0)
+    @john = Guest.new("John", 10.0, "Help!")
+    @paul = Guest.new("Paul", 8.0, "Penny Lane")
+    @george = Guest.new("George", 5.0, "Something")
+    @ringo = Guest.new("Ringo", 2.0, "Octopusses Garden")
   end
 
   def test_get_room_name
@@ -51,5 +51,6 @@ class TestRoom < Minitest::Test
     end
     assert_equal(4, @room.guests.count)
   end
+
 
 end
