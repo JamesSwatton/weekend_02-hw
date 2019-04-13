@@ -2,10 +2,10 @@ require('pry')
 
 class BarTab
 
-  attr_reader :room, :drinks
+  attr_reader :room_name, :drinks
 
-  def initialize(room)
-    @room = room
+  def initialize(room_name)
+    @room_name = room_name
     @drinks = {}
   end
 

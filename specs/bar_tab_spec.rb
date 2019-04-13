@@ -12,11 +12,6 @@ class TestBarTab < Minitest::Test
     @drink1 = Drink.new("beer", 3.00)
     @drink2 = Drink.new("wine", 5.00)
     @drink3 = Drink.new("tequila", 2.50)
-    # drinks_bought = {
-    #    wine: 5.00,
-    #    beer: 3.00,
-    #    tequila: 2.50
-    # }
 
     @bar_tab = BarTab.new("Studio Two")
   end

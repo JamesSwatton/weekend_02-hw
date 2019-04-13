@@ -52,4 +52,9 @@ class TestRoom < Minitest::Test
     assert_equal(4, @room.guests.count)
   end
 
+  def test_add_drink_to_tab
+    @room.add_drink_to_tab(@drink1, 2)
+    assert_equal(2, @room.bar_tab.drinks[@drinks1])
+  end
+
 end

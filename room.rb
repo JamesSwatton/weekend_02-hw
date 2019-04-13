@@ -1,6 +1,8 @@
+require_relative('./bar_tab')
+
 class Room
 
-  attr_reader :name, :price, :guests, :songs, :capacity, :entry_fees_total
+  attr_reader :name, :price, :guests, :songs, :capacity, :bar_tab
 
   def initialize (name, price, capacity)
     @name = name
@@ -8,6 +10,7 @@ class Room
     @capacity = capacity
     @guests = []
     @songs = []
+    @bar_tab = BarTab.new(name)
   end
 
   def check_in(guest)
@@ -29,6 +32,10 @@ class Room
 
   def full_capacity
     return @guests.count == @capacity
+  end
+
+  def add_drink_to_tab(drink, quantity)
+    @bar_tab.add_drink(drink, quantity)
   end
 
 end
