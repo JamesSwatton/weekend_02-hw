@@ -10,19 +10,17 @@ class BarTab
   end
 
 
-  def add_drink(drink, quantity)
+  def add_drink(drink)
     if @drinks.has_key?(drink)
-      @drinks[drink] += quantity
+      @drinks[drink] += 1
     else
-      @drinks[drink] = quantity
+      @drinks[drink] = 1
     end
   end
 
   def total
     total = 0
-    for drink in @drinks.keys
-      total += (drink.price * @drinks[drink])
-    end
+    @drinks.keys.each { |drink| total += (drink.price * @drinks[drink]) }
     return total
   end
 

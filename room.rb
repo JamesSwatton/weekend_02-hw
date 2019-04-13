@@ -14,12 +14,7 @@ class Room
   end
 
   def check_in(guest)
-    if !full_capacity
-      @guests << guest
-    else
-      return "Room full!"
-    end
-
+    !full_capacity ? @guests << guest : "Room full!"
   end
 
   def check_out(guest)
@@ -34,8 +29,8 @@ class Room
     return @guests.count == @capacity
   end
 
-  def add_drink_to_tab(drink, quantity)
-    @bar_tab.add_drink(drink, quantity)
+  def add_drink_to_tab(drink)
+    @bar_tab.add_drink(drink)
   end
 
 end

@@ -17,14 +17,14 @@ class TestBarTab < Minitest::Test
   end
 
   def test_add_drink_to_tab
-    @bar_tab.add_drink(@drink1, 1)
-    @bar_tab.add_drink(@drink1, 1)
+    @bar_tab.add_drink(@drink1)
+    @bar_tab.add_drink(@drink1)
     assert_equal(2, @bar_tab.drinks[@drink1])
   end
 
   def test_get_drinks_total
-    @bar_tab.add_drink(@drink1, 3)
-    @bar_tab.add_drink(@drink3, 2)
+    3.times { @bar_tab.add_drink(@drink1) }
+    2.times { @bar_tab.add_drink(@drink3) }
     assert_equal(14, @bar_tab.total)
   end
 

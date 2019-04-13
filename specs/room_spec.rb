@@ -3,6 +3,7 @@ require('minitest/rg')
 require_relative('../room')
 require_relative('../guest')
 require_relative('../song')
+require_relative('../drink')
 
 class TestRoom < Minitest::Test
 
@@ -16,6 +17,8 @@ class TestRoom < Minitest::Test
     @guest2 = Guest.new("Paul", 8.0, "Penny Lane")
     @guest3 = Guest.new("George", 5.0, "Something")
     @guest4 = Guest.new("Ringo", 2.0, "Octopusses Garden")
+
+    @drink1 = Drink.new("beer", 3.00)
   end
 
   def test_get_room_name
@@ -45,6 +48,13 @@ class TestRoom < Minitest::Test
     assert_equal(true, @room.full_capacity)
   end
 
+  def test_check_in_guest__room_full
+    4.times do
+      @room.check_in(@guest2)
+    end
+    assert_equal("Room full!", @room.check_in(@guest2))
+  end
+
   def test_no_check_in_if_full_capacity
     5.times do
       @room.check_in(@guest2)
@@ -53,8 +63,9 @@ class TestRoom < Minitest::Test
   end
 
   def test_add_drink_to_tab
-    @room.add_drink_to_tab(@drink1, 2)
-    assert_equal(2, @room.bar_tab.drinks[@drinks1])
+    drink = @guest1.order_drink(@drink1)
+    @room.add_drink_to_tab(drink)
+    assert_equal(1, @room.bar_tab.drinks[drink])
   end
 
 end
