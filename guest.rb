@@ -19,9 +19,7 @@ class Guest
   end
 
   def cheer_if_fav_song_on_playlist(room)
-    if room.songs.include?(@fav_song)
-      return "Goo goo g'joob!"
-    end
+    return "Goo goo g'joob!" if room.songs.include?(@fav_song)
   end
 
 end

@@ -12,10 +12,10 @@ class TestRoom < Minitest::Test
     @song1 = Song.new("Rain", "The Beatles")
     @song2 = Song.new("Song 2", "Blur")
 
-    @john = Guest.new("John", 10.0, "Help!")
-    @paul = Guest.new("Paul", 8.0, "Penny Lane")
-    @george = Guest.new("George", 5.0, "Something")
-    @ringo = Guest.new("Ringo", 2.0, "Octopusses Garden")
+    @guest1 = Guest.new("John", 10.0, "Help!")
+    @guest2 = Guest.new("Paul", 8.0, "Penny Lane")
+    @guest3 = Guest.new("George", 5.0, "Something")
+    @guest4 = Guest.new("Ringo", 2.0, "Octopusses Garden")
   end
 
   def test_get_room_name
@@ -23,13 +23,13 @@ class TestRoom < Minitest::Test
   end
 
   def test_check_in_guest
-    @room.check_in(@john)
+    @room.check_in(@guest1)
     assert_equal(1, @room.guests.size)
   end
 
   def test_check_out_guest
-    @room.check_in(@ringo)
-    @room.check_out(@ringo)
+    @room.check_in(@guest4)
+    @room.check_out(@guest4)
     assert_equal(0, @room.guests.size)
   end
 
@@ -40,17 +40,16 @@ class TestRoom < Minitest::Test
 
   def test_full_capacity
     4.times do
-      @room.check_in(@paul)
+      @room.check_in(@guest2)
     end
     assert_equal(true, @room.full_capacity)
   end
 
   def test_no_check_in_if_full_capacity
     5.times do
-      @room.check_in(@paul)
+      @room.check_in(@guest2)
     end
     assert_equal(4, @room.guests.count)
   end
-
 
 end
