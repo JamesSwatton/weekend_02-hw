@@ -18,7 +18,7 @@ class TestRoom < Minitest::Test
     @guest3 = Guest.new("George", 5.0, "Something")
     @guest4 = Guest.new("Ringo", 2.0, "Octopusses Garden")
 
-    @drink1 = Drink.new("beer", 3.00)
+    @drink1 = Drink.new("beer", 3.0)
   end
 
   def test_get_room_name
@@ -62,10 +62,28 @@ class TestRoom < Minitest::Test
     assert_equal(4, @room.guests.count)
   end
 
-  def test_add_drink_to_tab
+  def test_add_drink_order_to_tab
     drink = @guest1.order_drink(@drink1)
-    @room.add_drink_to_tab(drink)
+    @room.add_order_to_tab(drink)
     assert_equal(1, @room.bar_tab.drinks[drink])
+  end
+
+  def test_get_entry_fees_total
+    4.times{ @room.check_in(@guest1) }
+    assert_equal(20.0, @room.entry_fees_total)
+  end
+
+  def test_get_tab_total
+    drink = @guest1.order_drink(@drink1)
+    3.times{ @room.add_order_to_tab(drink) }
+    assert_equal(9.0, @room.tab_total)
+  end
+  
+  def test_get_session_total
+    4.times{ @room.check_in(@guest1) }
+    drink = @guest1.order_drink(@drink1)
+    4.times{ @room.add_order_to_tab(drink) }
+    assert_equal(32, @room.session_total)
   end
 
 end
